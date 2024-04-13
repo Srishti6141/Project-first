@@ -1,3 +1,11 @@
+$(window).scroll(function(e) {
+        
+    var distanceScrolled = $(this).scrollTop();
+  
+    if( distanceScrolled == 200){
+       $('#image1').css({"display" : "none"})
+    }
+  });
 function locomotiveAnimation(){
     gsap.registerPlugin(ScrollTrigger);
 
