@@ -13,57 +13,54 @@
 html,body{
     height: 100%;
     width: 100%;
-}
-body{
     background-color: #f7f7f7;
 }
+
 #cursor{
-    height: 100px;
-    width: 100px;
+    height: 140px;
+    width: 140px;
     background-color: blanchedalmond;
     border-radius: 50%;
     position: fixed;
-    scale:0;
-    opacity: 0;
+    opacity: 0.6;
+    transform: translate(-50%,-50%) scale(0);
 }
 #nav-container{
     padding: 1vw;
     width: 100%;
-    background-color: #f7f7f7;
-    z-index: 99;
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    position:fixed;
+    z-index: 10;
 }
-#nav-left{
+#nav-container #nav-left{
     height: 83px;
-    position: absolute;
-    z-index: 99;
-    /* background-color: red; */
+    width:106px;
     overflow:hidden;
-} 
+ } 
 #nav-left svg{
     display: block;
 }
-#nav-container #nav{
+#nav-container #nav-right{
     display: flex;
-    float: right;
-    position: relative;
     justify-content: center;
     align-items: center;
-    z-index: 99;
 }
-#nav li{
-    list-style-type: none;
-    padding:1vw 2.5vw;
-}
-#nav li a{
+
+#nav-right #links a{
+    position: relative;
     font-size: 0.8em;
     font-family: Georgia, 'Times New Roman', Times, serif;
     color: rgb(42, 2, 2);
     text-transform: uppercase;
-    position: relative;
     text-decoration: none;
+    padding:12px;
+} 
+#links{
+    padding:10px;
 }
-
-#nav li a::after{
+ #nav-right #links a::after{
     content: "";
     position: absolute;
     background-color: black;
@@ -73,31 +70,29 @@ body{
     height: 1.5px;
     transition:  0.5s;
     /* color:rgb(14, 175, 203); */
-}
-#nav li a:hover::after{
-    width: 100%;
-}
-#nav #icons{
+ }
+
+#nav-right #links a:hover::after{
+        width: 100%;
+    }
+#icons{
     width: 120px;
     padding: 10px 14px;
     display: flex;
-    float:right;
     justify-content: space-between;
     position: relative;
     z-index: 99;
-}
-#icons{
     background-color: #f7f7f7;
     border-radius: 50px;
     position:sticky;
-   
 }
-#nav #icons #menu:hover{
+
+#nav-right #icons #menu:hover{
    cursor:pointer;
    transform: scale(1.5);
    transition: 0.5s ease;
 }
-#nav #icons #cart:hover{
+#nav-right #icons #cart:hover{
     cursor:pointer;
     transform: scale(1.5) rotate(20deg);
     transition: 0.5s ease;
@@ -105,9 +100,9 @@ body{
  
 
 /* percentage in height refers to the parent element(main) and not applied to child(page) */
-#page1{
+ #page1{ 
     /* min-height is given so that atleast elements can store */
-    min-height: 100vh;
+     min-height: 100vh;
     width: 100%;
     position: relative;
     padding:0 2vw;
@@ -126,6 +121,8 @@ body{
 #video-container{
     height: 100vh;
     width:100%;
+    position:relative;
+    cursor:pointer;
     background-color: grey;
     margin-top: 2vh;
 }
@@ -139,18 +136,19 @@ body{
 #video-container #play{
     padding:3vw 2vw;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 0.7em;
+    font-size: 1.3em;
     text-transform: uppercase;
     border-radius: 50%;
     position:fixed;
     background-color: black;
     color:#fff;
+    transform:translate(-50% , -50%);
     opacity:0;
     scale:0;
 }
 
 #page2{
-    height: 100%;
+    min-height: 100vh;
     width:100%;
     position:relative;
     display: flex;
@@ -160,37 +158,34 @@ body{
 }
 
 #page2 .elem{
-    height: 100vh;
+    height: 100%;
     width:31%;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
+    /* overflow:hidden; */
 }
 
 #page2 .elem img{
     height: 100%;
     width:100%;
     object-fit: cover;
-    scale:1;
-}
+    scale:1.2;
+} 
 
-#page2 .elem .dets{
+ .elem .dets{
     /* pos absolute wrt page2 .elem relative */
     position: absolute;
     background-color: palegoldenrod;
     height: 50px;
     width:80%;
     border-radius: 50px;
-    /* top:50%;
-    left:50%;
-    transform: translate(-50%,-50%); */
-}
-#page2 .elem .dets:hover{
-    height: 200px;
+    z-index: 9;
 }
 
-#page3{
+
+ #page3{
     min-height: 100vh;
     width:100%;
     display: flex;
@@ -199,15 +194,17 @@ body{
     flex-wrap: wrap;
 }
 
-#page3 .child{
+ .child{
     height: 50vh;
     width: 40%;
+    position:relative;
     margin: 2vw;
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
-#page3 .child img{
+ .child img{
     height: 100%;
     width:80%;
     object-fit: cover;
@@ -216,9 +213,46 @@ body{
 
 
 @media (max-width:600px){
+    #nav-container{
+    padding: 15px;
+    width: 100%;
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    position:fixed;
+    z-index: 10;
+    }
+
+    #nav-container #nav-left{
+    height: 65px;
+    overflow:hidden;
+} 
+#nav-left svg{
+    display: block;
+    height:65px;
+}
+#nav-container #nav-right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:40px;
+}
+
+#nav-right #links a{
+    font-size: 0.8em;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: rgb(42, 2, 2);
+    text-transform: uppercase;
+    text-decoration: none;
+    margin:0 20px;
+}
+#links{
+    padding:10px;
+    display: none;
+}
     #page1 h1{
         font-size: 15.4vw;
-        line-height: 15vh;
+        /* line-height: 15vh; */
         letter-spacing: -5px;
     }
     #video-container{
@@ -227,10 +261,64 @@ body{
     }
     #video-container #play{
         padding:6vw 4vw;
+        font-size: 4.5vw;
+        position: absolute;
         top:50%;
         left:50%;
-        transform: translate(-50%,-50%);
-        opacity:1;
+        opacity:1; 
         scale:1;
+        transform: translate(-50%,-50%);
     }
+    #page2{
+        min-height: 100%;
+        width:100%;
+        position:relative;
+        display: flex;
+        justify-content: space-between;
+        padding: 2vw 1vw;
+        margin:2vh;
+    }
+    
+    #page2 .elem{
+        height: 100vh;
+        width:100%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .elem .dets{
+    /* pos absolute wrt page2 .elem relative */
+     position: absolute;
+    background-color: palegoldenrod;
+    height: 40%;
+    width:70%;
+    border-radius: 50px;
+    z-index: 9;
+} 
+#page3{
+    min-height: 120vh;
+    width:100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+ .child{
+    height: 54vh;
+    width: 90vw;
+    position:relative;
+    padding:15vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+ .child img{
+    height: 100%;
+    
+    
+}
+    
 }
